@@ -1,0 +1,17 @@
+#calculator {width: 270px;}
+
+#calculator-text-field {text-align: right; font-size: 23px; height: 50px;}
+
+.numpad-row {margin-top: 10px;}
+
+#numpad button {float: left; width: 60px; margin-right: 10px; font-size: 20px; font-weight: bold;}
+#numpad button:nth-child(4n) {margin-right: 0;}
+
+#numpad button.span-2 {width: 130px;}
+#numpad button.span-3 {width: 200px;}
+
+#numpad #btn-0 {width: 270px;}
+
+#numpad #btn-multiply {margin-right: 0;}
+
+#numpad #btn-evaluate {margin-right: 0;}

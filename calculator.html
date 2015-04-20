@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Calculator</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    
+    <link href="css/calculator.css" rel="stylesheet"/>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Calculator</h1>
+      </div>
+      
+      <div id="calculator" class="clearfix">
+        <input type="text" placeholder="0" id="calculator-text-field" class="form-control" aria-label="Type a number"/>
+        
+        <div id="numpad">
+          <div class="numpad-row clearfix">
+            <button class="btn btn-lg btn-default" data-char="7">7</button>
+            <button class="btn btn-lg btn-default" data-char="8">8</button>
+            <button class="btn btn-lg btn-default" data-char="9">9</button>
+            <button class="btn btn-lg btn-primary" aria-label="Add" id="btn-add">
+              <span aria-hidden="true">+</span>
+            </button>
+          </div>
+          
+          <div class="numpad-row clearfix">
+            <button class="btn btn-lg btn-default" data-char="4">4</button>
+            <button class="btn btn-lg btn-default" data-char="5">5</button>
+            <button class="btn btn-lg btn-default" data-char="6">6</button>
+            <button class="btn btn-lg btn-primary" aria-label="Subtract" id="btn-subtract">
+              <span aria-hidden="true">&minus;</span>
+            </button>
+          </div>
+                    
+          <div class="numpad-row clearfix">
+            <button class="btn btn-lg btn-default" data-char="1">1</button>
+            <button class="btn btn-lg btn-default" data-char="2">2</button>
+            <button class="btn btn-lg btn-default" data-char="3">3</button>
+            <button class="btn btn-lg btn-primary" aria-label="Divide" id="btn-divide">
+              <span aria-hidden="true">&divide;</span>
+            </button>
+          </div>
+          
+          <div class="numpad-row clearfix">
+            <button class="btn btn-lg btn-default span-2" data-char="0">0</button>
+            <button class="btn btn-lg btn-default" data-char="." aria-label="Decimal">
+              <span class="aria-hidden">.</span>
+            </button>
+            <button class="btn btn-lg btn-primary" aria-label="Multiply" id="btn-multiply">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <div class="numpad-row clearfix">
+            <button class="btn btn-lg btn-danger" aria-label="Clear" id="btn-clear">
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </button>
+            
+            <button class="btn btn-lg btn-primary span-3" aria-label="Evaluate" id="btn-evaluate">
+              <span aria-hidden="true">=</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/calculator.js"></script>
+  </body>
+</html>
