@@ -73,6 +73,20 @@ $(function() {
     resultShown = false;
   });
   
+  $('#calculator').keyup(function(event) {
+    if (event.keyCode == '187' && event.shiftKey) {
+      $('#btn-add').trigger('click');
+    } else if (event.keyCode == 189 && !event.shiftKey) {
+      $('#btn-subtract').trigger('click'); 
+    } else if (event.keyCode == 56 && event.shiftKey) {
+      $('#btn-multiply').trigger('click');
+    } else if (event.keyCode == 191 && !event.shiftKey) {
+      $('#btn-divide').trigger('click');
+    } else if ((event.keyCode == '187' && !event.shiftKey) || event.keyCode == 13) {
+      $('#btn-evaluate').trigger('click');
+    }
+  });
+  
   // Set tab indices.
   (function() {
     var minTabIndex = parseInt($('#calculator').attr('data-tabindex'));
