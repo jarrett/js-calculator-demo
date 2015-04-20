@@ -20,7 +20,7 @@ $(function() {
     return function() {
       lastNum = getInput();
       operator = callback;
-      textField.val('');
+      textField.val('').focus();
       resultShown = false;
     }
   }
@@ -59,7 +59,7 @@ $(function() {
     if (operator && lastNum) {
       var currentNum = getInput();
       var result = operator(lastNum, currentNum);
-      textField.val(result);
+      textField.val(result).focus();
       operator = null;
       lastNum = null;
       resultShown = true;
@@ -69,7 +69,7 @@ $(function() {
   $('#btn-clear').click(function() {
     lastNum = null;
     operator = null;
-    textField.val('');
+    textField.val('').focus();
     resultShown = false;
   });
   
