@@ -72,4 +72,28 @@ $(function() {
     textField.val('');
     resultShown = false;
   });
+  
+  // Set tab indices.
+  (function() {
+    var minTabIndex = parseInt($('#calculator').attr('data-tabindex'));
+    
+    textField.attr('tabindex', minTabIndex);
+    
+    $('#numpad button[data-char]').each(function() {
+      if ($(this).attr('data-char') != '.') {
+        $(this).attr(
+          'tabindex',
+          minTabIndex + parseInt($(this).attr('data-char')) + 1
+        );
+      }
+    });
+    
+    $('#btn-decimal' ).attr('tabindex', minTabIndex + 11);
+    $('#btn-add'     ).attr('tabindex', minTabIndex + 12);
+    $('#btn-subtract').attr('tabindex', minTabIndex + 13);
+    $('#btn-multiply').attr('tabindex', minTabIndex + 14);
+    $('#btn-divide'  ).attr('tabindex', minTabIndex + 15);
+    $('#btn-evaluate').attr('tabindex', minTabIndex + 16);
+    $('#btn-clear'   ).attr('tabindex', minTabIndex + 17);
+  })();
 });

@@ -25,7 +25,7 @@
         <h1>Calculator</h1>
       </div>
       
-      <div id="calculator" class="clearfix">
+      <div id="calculator" class="clearfix" data-tabindex="1">
         <input type="text" placeholder="0" id="calculator-text-field" class="form-control" aria-label="Type a number"/>
         
         <div id="numpad">
@@ -51,18 +51,18 @@
             <button class="btn btn-lg btn-default" data-char="1">1</button>
             <button class="btn btn-lg btn-default" data-char="2">2</button>
             <button class="btn btn-lg btn-default" data-char="3">3</button>
-            <button class="btn btn-lg btn-primary" aria-label="Divide" id="btn-divide">
-              <span aria-hidden="true">&divide;</span>
+            <button class="btn btn-lg btn-primary" aria-label="Multiply" id="btn-multiply">
+              <span aria-hidden="true">&times;</span>
             </button>
           </div>
           
           <div class="numpad-row clearfix">
             <button class="btn btn-lg btn-default span-2" data-char="0">0</button>
-            <button class="btn btn-lg btn-default" data-char="." aria-label="Decimal">
+            <button class="btn btn-lg btn-default" data-char="." id="btn-decimal" aria-label="Decimal">
               <span class="aria-hidden">.</span>
             </button>
-            <button class="btn btn-lg btn-primary" aria-label="Multiply" id="btn-multiply">
-              <span aria-hidden="true">&times;</span>
+            <button class="btn btn-lg btn-primary" aria-label="Divide" id="btn-divide">
+              <span aria-hidden="true">&divide;</span>
             </button>
           </div>
           
@@ -78,8 +78,6 @@
         </div>
       </div>
     </div>
-    
-    
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
