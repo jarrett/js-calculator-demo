@@ -11,64 +11,77 @@ $(function() {
   
     var lastNum = null;
     var operator = null;
-    var resultShown = false;
-  
+    var nextNumClears = false;
+    
+    // Constructs a BigNumber from the number in the text field. Returns 0 if the
+    // text field contains an invalid string.
     function getInput() {
       var str = textField.val();
-      split = str.split('.');
-      return {
-        value: parseFloat(str),
-        decimals: (split.length == 1) ? 0 : split[1].length
-      };
+      try {
+        return new BigNumber(str);
+      } catch(e) {
+        return 0.
+      }
     }
-  
+    
+    // Returns a function. The function updates the calculator's state to reflect
+    // that an operator was chosen. The functionality of the operator is defined by the
+    // callback. The callback takes two BigNumber objects and should return a BigNumber.
     function makeOperator(callback) {
       return function() {
         lastNum = getInput();
         operator = callback;
-        textField.val('').focus();
-        resultShown = false;
+        textField.focus();
+        nextNumClears = true;
       }
     }
-  
+    
+    function stripTrailing(str) {
+      str = str.replace(/0+$/, '');
+      return str.replace(/\.$/, '');
+    }
+    
     $e('.numpad button[data-char]').click(function() {
       var chr = $(this).attr('data-char');
       if (chr != '.' || textField.val().indexOf('.') == -1) {
-        if (resultShown) {
-          resultShown = false;
+        if (nextNumClears) {
           textField.val('');
+          nextNumClears = false;
         }
         textField.val(textField.val() + chr);
       }
     });
   
     $e('.btn-add').click(makeOperator(function(a, b) {
-      return (a.value + b.value)
-        .toFixed(Math.max(a.decimals, b.decimals));
+      return a.plus(b);
     }));
   
     $e('.btn-subtract').click(makeOperator(function(a, b) {
-      return (a.value - b.value)
-        .toFixed(Math.max(a.decimals, b.decimals));
+      return a.minus(b);
     }));
-  
+    
     $e('.btn-multiply').click(makeOperator(function(a, b) {
-      return (a.value * b.value)
-        .toFixed(a.decimals + b.decimals);
+      return a.times(b);
     }));
   
     $e('.btn-divide').click(makeOperator(function(a, b) {
-      return a.value / b.value;
+      return a.dividedBy(b);
     }));
   
     $e('.btn-evaluate').click(function() {
       if (operator && lastNum) {
         var currentNum = getInput();
-        var result = operator(lastNum, currentNum);
-        textField.val(result).focus();
+        var result = operator(lastNum, currentNum); // Returns a BigNumber.
+        textField.val(
+          stripTrailing(
+            result
+              .toPrecision(14)
+              .toString()
+          )
+        ).focus();
         operator = null;
         lastNum = null;
-        resultShown = true;
+        nextNumClears = true;
       }
     });
   
@@ -76,21 +89,55 @@ $(function() {
       lastNum = null;
       operator = null;
       textField.val('').focus();
-      resultShown = false;
+      nextNumClears = false;
     });
-  
-    $e('.calculator').keyup(function(event) {
-      if (event.keyCode == '187' && event.shiftKey) {
-        $e('.btn-add').trigger('click');
-      } else if (event.keyCode == 189 && !event.shiftKey) {
-        $e('.btn-subtract').trigger('click'); 
-      } else if (event.keyCode == 56 && event.shiftKey) {
-        $e('.btn-multiply').trigger('click');
-      } else if (event.keyCode == 191 && !event.shiftKey) {
-        $e('.btn-divide').trigger('click');
-      } else if ((event.keyCode == '187' && !event.shiftKey) || event.keyCode == 13) {
+    
+    function clearLastChar() {
+      var str = textField.val();
+      textField.val(
+        str.substring(0, str.length - 1)
+      );
+    }
+    
+    calculator.keyup(function(event) {
+      if (event.keyCode == 13) {
+        // Return key.
         $e('.btn-evaluate').trigger('click');
       }
+    });
+    
+    textField.on('input', function(event) {
+      var str = textField.val();
+      var lastChar = str.substr(str.length - 1, 1);
+      var wasOp = false;
+      
+      switch (lastChar) {
+        case '+':
+          clearLastChar();
+          wasOp = true;
+          $e('.btn-add').trigger('click');
+          break;
+        case '-':
+          clearLastChar();
+          wasOp = true;
+          $e('.btn-subtract').trigger('click');
+          break;
+        case '*':
+          clearLastChar();
+          wasOp = true;
+          $e('.btn-multiply').trigger('click');
+          break;
+        case '/':
+          clearLastChar();
+          wasOp = true;
+          $e('.btn-divide').trigger('click');
+          break;
+      }
+      
+      if (!wasOp && nextNumClears) {
+        textField.val(lastChar);
+        nextNumClears = false;
+      }     
     });
   
     // Set tab indices.

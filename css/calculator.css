@@ -7,23 +7,22 @@
 
 .calculator .numpad-row {margin-top: 10px;}
 
-.calculator .numpad button {
+.calculator button {
   display: inline-block; float: left; width: 60px; background: white;
   border: 1px solid #e0e0e0; border-radius: 4px; margin: 0 10px 0 0; padding: 8px 12px;
-  font-size: 20px; font-weight: bold;
+  font-size: 20px; font-weight: bold; cursor: pointer;
 }
-.calculator .numpad button:nth-child(4n) {margin-right: 0;}
-.calculator .numpad button.span-2 {width: 130px;}
-.calculator .numpad button.span-3 {width: 200px;}
-.calculator .numpad button.blue {background: #337ab7; border-color: #2e6da4; color: white;}
-.calculator .numpad button.red {background: #d9534f; border-color: #d43f3a; color: white;}
+.calculator button:nth-child(4n) {margin-right: 0;}
+.calculator button.span-2 {width: 130px;}
+.calculator button.span-3 {width: 200px;}
+.calculator button.blue {background: #337ab7; border-color: #2e6da4; color: white;}
+.calculator button.red {background: #d9534f; border-color: #d43f3a; color: white;}
 
+.calculator .btn-0 {width: 270px;}
 
-.calculator .numpad .btn-0 {width: 270px;}
+.calculator .btn-divide {margin-right: 0;}
 
-.calculator .numpad .btn-divide {margin-right: 0;}
-
-.calculator .numpad .btn-evaluate {margin-right: 0;}
+.calculator .btn-evaluate {margin-right: 0;}
 
 .calculator .clearfix:before, .calculator .clearfix:after {content: " "; display: table;}
 .calculator .clearfix:after {clear: both;}
