@@ -158,8 +158,6 @@ $(function() {
       }
     });
     
-    window.fsm = fsm;
-    
     // ----------- //
     // DOM events. //
     // ----------- //
