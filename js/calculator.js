@@ -153,7 +153,7 @@ $(function() {
         
         onclear: function() {
           textField.val('');
-          fsm.toLeft();
+          fsm.clear();
         }
       }
     });
